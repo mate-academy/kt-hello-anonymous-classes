@@ -10,7 +10,7 @@ class HelloWorldAnonymousClasses {
     }
 
     fun sayHello(names: List<String>): List<String> {
-        val EnglishGreeting = object : HelloWorldGreeting {
+        val englishGreeting = object : HelloWorldGreeting {
             override fun greet(): String {
                 return "Hello world"
             }
@@ -20,7 +20,7 @@ class HelloWorldAnonymousClasses {
             }
         }
 
-        val FrenchGreeting = object : HelloWorldGreeting {
+        val frenchGreeting = object : HelloWorldGreeting {
             override fun greet(): String {
                 return "Salut tout le monde"
             }
@@ -30,7 +30,7 @@ class HelloWorldAnonymousClasses {
             }
         }
 
-        val SpanishGreeting = object : HelloWorldGreeting {
+        val spanishGreeting = object : HelloWorldGreeting {
             override fun greet(): String {
                 return "Hola, mundo"
             }
@@ -42,14 +42,14 @@ class HelloWorldAnonymousClasses {
 
         val list: MutableList<String> = mutableListOf()
 //        val forReturn: MutableList<object> = mutableListOf()
-        list.add(EnglishGreeting.greet())
-        list.add(FrenchGreeting.greet())
-        list.add(SpanishGreeting.greet())
+        list.add(englishGreeting.greet())
+        list.add(frenchGreeting.greet())
+        list.add(spanishGreeting.greet())
         for (name in names) {
-            list.add(EnglishGreeting.greetSomeone(name))
-            list.add(FrenchGreeting.greetSomeone(name))
-            list.add(SpanishGreeting.greetSomeone(name))
+            list.add(englishGreeting.greetSomeone(name))
+            list.add(frenchGreeting.greetSomeone(name))
+            list.add(spanishGreeting.greetSomeone(name))
         }
-        return list.toList()
+        return list
     }
 }
