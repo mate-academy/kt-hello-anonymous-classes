@@ -20,22 +20,25 @@ class HelloWorldAnonymousClasses {
 
         val result = mutableListOf<String>()
 
-        if (names.isEmpty()) {
+        fun addInitialGreetingsAndMessages() {
             result.add(greetings.greet())
             result.add("Salut tout le monde")
             result.add("Hola, mundo")
-        } else {
-            result.add(greetings.greet())
-            result.add("Salut tout le monde")
-            result.add("Hola, mundo")
+        }
+
+        if (names.isNotEmpty()) {
+            addInitialGreetingsAndMessages()
 
             for (name in names) {
                 result.add(greetings.greetSomeone(name))
                 result.add("Salut $name")
                 result.add("Hola, $name")
             }
+        } else {
+            addInitialGreetingsAndMessages()
         }
 
         return result
     }
+
 }
