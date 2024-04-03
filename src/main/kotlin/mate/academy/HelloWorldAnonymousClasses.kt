@@ -30,7 +30,7 @@ class HelloWorldAnonymousClasses {
             result.add("Hola, mundo")
 
             for (name in names) {
-                result.add(greetings.greetSomeone(name)) // Use the name as is, without trimming
+                result.add(greetings.greetSomeone(name))
                 result.add("Salut $name")
                 result.add("Hola, $name")
             }
