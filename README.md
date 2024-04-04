@@ -5,7 +5,7 @@ In this task, you're provided with a base class named `HelloWorldAnonymousClasse
 
 **Your goal:** implement the `sayHello(names: List<String>): List<String>` method using anonymous classes to provide greetings in **English, French,** and **Spanish**.
 
-##Instructions
+## Instructions
 
  1. Begin by creating three anonymous classes within the `sayHello` method, each implementing the `HelloWorldGreeting` interface.
     
@@ -23,7 +23,7 @@ In this task, you're provided with a base class named `HelloWorldAnonymousClasse
  6. The `sayHello` function should return a list of strings containing both the initial general greetings (e.g., “Hello world”) and all the personalized greetings.
     
 
-##Example of How Your Implementation Should Work
+## Example of How Your Implementation Should Work
 
 ```kotlin
 fun main() {
