@@ -8,26 +8,46 @@ class HelloWorldAnonymousClasses {
     }
 
     fun sayHello(names: List<String>): List<String> {
-        val greetings = object : HelloWorldGreeting {
-            override fun greet(): String {
-                return "Hello world"
-            }
+        val greetings = listOf(
+            object : HelloWorldGreeting {
+                override fun greet(): String {
+                    return "Hello world"
+                }
 
-            override fun greetSomeone(someone: String): String {
-                return "Hello $someone"
+                override fun greetSomeone(someone: String): String {
+                    return "Hello $someone"
+                }
+            },
+            object : HelloWorldGreeting {
+                override fun greet(): String {
+                    return "Salut tout le monde"
+                }
+
+                override fun greetSomeone(someone: String): String {
+                    return "Salut $someone"
+                }
+            },
+            object : HelloWorldGreeting {
+                override fun greet(): String {
+                    return "Hola, mundo"
+                }
+
+                override fun greetSomeone(someone: String): String {
+                    return "Hola, $someone"
+                }
             }
-        }
+        )
 
         val result = mutableListOf<String>()
 
-        result.add("Hello world")
-        result.add("Salut tout le monde")
-        result.add("Hola, mundo")
+        for (greeting in greetings) {
+            result.add(greeting.greet())
+        }
 
         for (name in names) {
-            result.add(greetings.greetSomeone(name))
-            result.add("Salut $name")
-            result.add("Hola, $name")
+            for (greeting in greetings) {
+                result.add(greeting.greetSomeone(name))
+            }
         }
 
         return result
