@@ -27,8 +27,7 @@ class HelloWorldAnonymousClasses {
         }
 
         val greetingObjects = listOf(english, french, spanish)
-        val greetings = greetingObjects.map { it.greet() }.toMutableList()
-        names.flatMap { name -> greetingObjects.map { it.greetSomeone(name) } }.let { greetings.addAll(it) }
-        return greetings
+        return greetingObjects.map { it.greet() } +
+                names.flatMap { name -> greetingObjects.map { it.greetSomeone(name) } }
     }
 }
