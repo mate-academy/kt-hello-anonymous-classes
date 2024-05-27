@@ -1,3 +1,5 @@
+package mate.academy
+
 class HelloWorldAnonymousClasses {
     interface HelloWorldGreeting {
         fun greet(): String
