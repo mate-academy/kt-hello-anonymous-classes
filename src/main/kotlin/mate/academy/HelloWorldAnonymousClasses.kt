@@ -20,18 +20,18 @@ class HelloWorldAnonymousClasses {
             override fun greetSomeone(someone: String): String = "Hola, $someone"
         }
 
-        val greetings = mutableListOf<String>()
+        val greetings = listOf(
+            englishGreeting.greet(),
+            frenchGreeting.greet(),
+            spanishGreeting.greet()
+        )
 
-        greetings.add(englishGreeting.greet())
-        greetings.add(frenchGreeting.greet())
-        greetings.add(spanishGreeting.greet())
-
-        for (name in names) {
-            greetings.add(englishGreeting.greetSomeone(name))
-            greetings.add(frenchGreeting.greetSomeone(name))
-            greetings.add(spanishGreeting.greetSomeone(name))
+        return greetings + names.flatMap { name ->
+            listOf(
+                englishGreeting.greetSomeone(name),
+                frenchGreeting.greetSomeone(name),
+                spanishGreeting.greetSomeone(name)
+            )
         }
-
-        return greetings
     }
 }
