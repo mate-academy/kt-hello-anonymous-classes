@@ -30,6 +30,8 @@ class HelloWorldAnonymousClasses {
 
         val generalGreetings = greetingList.map { it.greet() }
 
+        if (names.isEmpty()) return generalGreetings
+
         val personalGreetings = names
             .flatMap { name ->
                 greetingList
