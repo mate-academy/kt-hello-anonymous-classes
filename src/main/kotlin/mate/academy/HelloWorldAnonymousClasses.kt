@@ -44,6 +44,6 @@ class HelloWorldAnonymousClasses {
             greetings.add(frenchGreeting.greetSomeone(name))
             greetings.add(spanishGreeting.greetSomeone(name))
         }
-        return greetings;
+        return greetings
     }
 }
