@@ -10,7 +10,7 @@ class HelloWorldAnonymousClasses {
     fun sayHello(names: List<String>): List<String> {
         val englishGreeting = object : HelloWorldGreeting {
             override fun greet(): String {
-                return "Hello wkorld"
+                return "Hello world"
             }
 
             override fun greetSomeone(someone: String): String {
