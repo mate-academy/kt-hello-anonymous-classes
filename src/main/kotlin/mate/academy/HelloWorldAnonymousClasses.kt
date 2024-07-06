@@ -1,6 +1,21 @@
 package mate.academy
 
+import mate.academy.HelloWorldAnonymousClasses.Greetings.HELLO_SOMEONE
+import mate.academy.HelloWorldAnonymousClasses.Greetings.HELLO_WORLD
+import mate.academy.HelloWorldAnonymousClasses.Greetings.HOLA_MUNDO
+import mate.academy.HelloWorldAnonymousClasses.Greetings.HOLA_SOMEONE
+import mate.academy.HelloWorldAnonymousClasses.Greetings.SALUT_SOMEONE
+import mate.academy.HelloWorldAnonymousClasses.Greetings.SALUT_TOUT_LE_MONDE
+
 class HelloWorldAnonymousClasses {
+    object Greetings {
+        const val HELLO_WORLD = "Hello world"
+        const val HELLO_SOMEONE = "Hello"
+        const val SALUT_TOUT_LE_MONDE = "Salut tout le monde"
+        const val SALUT_SOMEONE = "Salut"
+        const val HOLA_MUNDO = "Hola, mundo"
+        const val HOLA_SOMEONE = "Hola,"
+    }
 
     interface HelloWorldGreeting {
         fun greet(): String
@@ -8,42 +23,26 @@ class HelloWorldAnonymousClasses {
     }
 
     fun sayHello(names: List<String>): List<String> {
-        val englishGreeting = object : HelloWorldGreeting {
-            override fun greet(): String {
-                return "Hello world"
-            }
+        val greetingList = listOf(
+            object : HelloWorldGreeting {
 
-            override fun greetSomeone(someone: String): String {
-                return "Hello $someone"
-            }
-        }
-        val frenchGreeting = object : HelloWorldGreeting {
-            override fun greet(): String {
-                return "Salut tout le monde"
-            }
+                override fun greet() = HELLO_WORLD
 
-            override fun greetSomeone(someone: String): String {
-                return "Salut $someone"
-            }
-        }
-        val spanishGreeting = object : HelloWorldGreeting {
-            override fun greet(): String {
-                return "Hola, mundo"
-            }
+                override fun greetSomeone(someone: String) = "$HELLO_SOMEONE $someone"
+            },
+            object : HelloWorldGreeting {
+                override fun greet() = SALUT_TOUT_LE_MONDE
 
-            override fun greetSomeone(someone: String): String {
-                return "Hola, $someone"
-            }
-        }
-        val greetings = mutableListOf<String>()
-        greetings.add(englishGreeting.greet())
-        greetings.add(frenchGreeting.greet())
-        greetings.add(spanishGreeting.greet())
-        for (name in names) {
-            greetings.add(englishGreeting.greetSomeone(name))
-            greetings.add(frenchGreeting.greetSomeone(name))
-            greetings.add(spanishGreeting.greetSomeone(name))
-        }
-        return greetings
+                override fun greetSomeone(someone: String) = "$SALUT_SOMEONE $someone"
+            },
+            object : HelloWorldGreeting {
+                override fun greet() = HOLA_MUNDO
+
+                override fun greetSomeone(someone: String) = "$HOLA_SOMEONE $someone"
+            })
+        val result = mutableListOf<String>()
+        greetingList.forEach { result.add(it.greet()) }
+        names.forEach { name -> greetingList.forEach { result.add(it.greetSomeone(name)) } }
+        return result
     }
 }
