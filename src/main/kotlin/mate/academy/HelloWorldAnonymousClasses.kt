@@ -1,14 +1,7 @@
 package mate.academy
 
-import mate.academy.HelloWorldAnonymousClasses.Greetings.HELLO_SOMEONE
-import mate.academy.HelloWorldAnonymousClasses.Greetings.HELLO_WORLD
-import mate.academy.HelloWorldAnonymousClasses.Greetings.HOLA_MUNDO
-import mate.academy.HelloWorldAnonymousClasses.Greetings.HOLA_SOMEONE
-import mate.academy.HelloWorldAnonymousClasses.Greetings.SALUT_SOMEONE
-import mate.academy.HelloWorldAnonymousClasses.Greetings.SALUT_TOUT_LE_MONDE
-
 class HelloWorldAnonymousClasses {
-    object Greetings {
+    companion object Greetings {
         const val HELLO_WORLD = "Hello world"
         const val HELLO_SOMEONE = "Hello"
         const val SALUT_TOUT_LE_MONDE = "Salut tout le monde"
@@ -25,24 +18,22 @@ class HelloWorldAnonymousClasses {
     fun sayHello(names: List<String>): List<String> {
         val greetingList = listOf(
             object : HelloWorldGreeting {
-
                 override fun greet() = HELLO_WORLD
-
                 override fun greetSomeone(someone: String) = "$HELLO_SOMEONE $someone"
             },
             object : HelloWorldGreeting {
                 override fun greet() = SALUT_TOUT_LE_MONDE
-
                 override fun greetSomeone(someone: String) = "$SALUT_SOMEONE $someone"
             },
             object : HelloWorldGreeting {
                 override fun greet() = HOLA_MUNDO
-
                 override fun greetSomeone(someone: String) = "$HOLA_SOMEONE $someone"
             })
         val result = mutableListOf<String>()
         greetingList.forEach { result.add(it.greet()) }
-        names.forEach { name -> greetingList.forEach { result.add(it.greetSomeone(name)) } }
+        if (names.isNotEmpty()) {
+            names.forEach { name -> greetingList.forEach { result.add(it.greetSomeone(name)) } }
+        }
         return result
     }
 }
