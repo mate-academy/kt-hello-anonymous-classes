@@ -7,7 +7,6 @@ const val ENGLISH_GREET_SOMEONE = "Hello"
 const val FRENCH_GREET_SOMEONE = "Salut"
 const val SPANISH_GREET_SOMEONE = "Hola,"
 
-
 class HelloWorldAnonymousClasses {
 
     interface HelloWorldGreeting {
@@ -33,17 +32,13 @@ class HelloWorldAnonymousClasses {
 
             override fun greetSomeone(someone: String): String = "$SPANISH_GREET_SOMEONE $someone"
         }
-        val greetings = mutableListOf(englishGreeting.greet(),
-                                      frenchGreeting.greet(),
-                                      spanishGreeting.greet())
-        if (names.isNotEmpty()) {
-            for (name in names) {
-                greetings.add(englishGreeting.greetSomeone(name))
-                greetings.add(frenchGreeting.greetSomeone(name))
-                greetings.add(spanishGreeting.greetSomeone(name))
-            }
-        }
-        return greetings
+        val greetings = listOf(englishGreeting, frenchGreeting, spanishGreeting)
+        val greetingsToWorld = greetings.map {it.greet()}
+
+        if (names.isEmpty()) return greetingsToWorld
+
+        val greetingsToSomeone = names.flatMap { name -> greetings.map { it.greetSomeone(name)}  }
+        return greetingsToWorld + greetingsToSomeone
     }
 }
 
