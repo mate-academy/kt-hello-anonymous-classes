@@ -8,43 +8,42 @@ class HelloWorldAnonymousClasses {
     }
 
     fun sayHello(names: List<String>): List<String> {
-        val englishGreeting = object : HelloWorldGreeting {
-            override fun greet(): String {
-                return "Hello world"
+        val greetingsObjects = listOf(
+            object : HelloWorldGreeting {
+                override fun greet(): String {
+                    return LocalGreetings.ENGLISHWORLDHELLO.greeting
+                }
+                override fun greetSomeone(someone: String): String {
+                    return "${HiLocal.ENGLISHHI.hi} $someone"
+                }
+            },
+            object : HelloWorldGreeting {
+                override fun greet(): String {
+                    return LocalGreetings.FRENCHWORLDHELLO.greeting
+                }
+                override fun greetSomeone(someone: String): String {
+                    return "${HiLocal.FRENCHHI.hi} $someone"
+                }
+            },
+            object : HelloWorldGreeting {
+                override fun greet(): String {
+                    return LocalGreetings.SPANISHWORLDHELLO.greeting
+                }
+                override fun greetSomeone(someone: String): String {
+                    return "${HiLocal.SPANISHHI.hi}, $someone"
+                }
             }
-            override fun greetSomeone(someone: String): String {
-                return "Hello $someone"
-            }
-        }
-
-        val frenchGreeting  = object : HelloWorldGreeting {
-            override fun greet(): String {
-                return "Salut tout le monde"
-            }
-            override fun greetSomeone(someone: String): String {
-                return "Salut $someone"
-            }
-        }
-
-        val spanishGreeting  = object : HelloWorldGreeting {
-            override fun greet(): String {
-                return "Hola, mundo"
-            }
-            override fun greetSomeone(someone: String): String {
-                return "Hola, $someone"
-            }
-        }
+        )
 
         val greetings = mutableListOf<String>()
 
-        greetings.add(englishGreeting.greet())
-        greetings.add(frenchGreeting.greet())
-        greetings.add(spanishGreeting.greet())
+        for (localGreeting in LocalGreetings.values())
+        greetings.add(localGreeting.greeting)
 
         for (name in names) {
-            greetings.add(englishGreeting.greetSomeone(name))
-            greetings.add(frenchGreeting.greetSomeone(name))
-            greetings.add(spanishGreeting.greetSomeone(name))
+            for (greeting in greetingsObjects) {
+                greetings.add(greeting.greetSomeone(name))
+            }
         }
 
         return greetings
