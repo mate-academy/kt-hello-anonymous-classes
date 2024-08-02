@@ -1,5 +1,11 @@
 package mate.academy
 
+private const val ENGLISH_HELLO = "Hello world"
+
+private const val FRENCH_HELLO = "Salut tout le monde"
+
+private const val SPANISH_HELLO = "Hola, mundo"
+
 class HelloWorldAnonymousClasses {
 
     interface HelloWorldGreeting {
@@ -8,10 +14,9 @@ class HelloWorldAnonymousClasses {
     }
 
     fun sayHello(names: List<String>): List<String> {
-        val greetings = mutableListOf<String>()
         val englishGreeting = object : HelloWorldGreeting {
             override fun greet(): String {
-                return "Hello world"
+                return ENGLISH_HELLO
             }
 
             override fun greetSomeone(someone: String): String {
@@ -20,7 +25,7 @@ class HelloWorldAnonymousClasses {
         }
         val frenchGreeting = object : HelloWorldGreeting {
             override fun greet(): String {
-                return "Salut tout le monde"
+                return FRENCH_HELLO
             }
 
             override fun greetSomeone(someone: String): String {
@@ -30,22 +35,28 @@ class HelloWorldAnonymousClasses {
 
         val spanishGreeting = object : HelloWorldGreeting {
             override fun greet(): String {
-                return "Hola, mundo"
+                return SPANISH_HELLO
             }
 
             override fun greetSomeone(someone: String): String {
                 return "Hola, $someone"
             }
         }
-        greetings.add(englishGreeting.greet())
-        greetings.add(frenchGreeting.greet())
-        greetings.add(spanishGreeting.greet())
 
-        for (name in names) {
-            greetings.add(englishGreeting.greetSomeone(name))
-            greetings.add(frenchGreeting.greetSomeone(name))
-            greetings.add(spanishGreeting.greetSomeone(name))
+        val greetings: List<HelloWorldGreeting> = listOf(
+            englishGreeting,
+            frenchGreeting,
+            spanishGreeting
+        )
+
+        val result = mutableListOf<String>()
+        for (greeting in greetings) {
+            result.add(greeting.greet())
         }
-        return greetings
+        for (name in names) {
+            for (greeting in greetings)
+            result.add(greeting.greetSomeone(name))
+        }
+        return result
     }
 }
