@@ -25,6 +25,7 @@ class HelloWorldAnonymousClasses {
             englishGreeting.greet(),
             frenchGreeting.greet(),
             spanishGreeting.greet()
+        )
 
         for (name in names) {
             greetings.add(englishGreeting.greetSomeone(name))
