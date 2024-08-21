@@ -9,39 +9,25 @@ class HelloWorldAnonymousClasses {
 
     fun sayHello(names: List<String>): List<String> {
         val englishGreeting = object : HelloWorldGreeting {
-            override fun greet(): String {
-                return "Hello world"
-            }
-
-            override fun greetSomeone(someone: String): String {
-                return "Hello $someone"
-            }
+            override fun greet(): String = "Hello world"
+            override fun greetSomeone(someone: String): String = "Hello $someone"
         }
 
         val frenchGreeting = object : HelloWorldGreeting {
-            override fun greet(): String {
-                return "Salut tout le monde"
-            }
-
-            override fun greetSomeone(someone: String): String {
-                return "Salut $someone"
-            }
+            override fun greet(): String = "Salut tout le monde"
+            override fun greetSomeone(someone: String): String = "Salut $someone"
         }
 
         val spanishGreeting = object : HelloWorldGreeting {
-            override fun greet(): String {
-                return "Hola, mundo"
-            }
-
-            override fun greetSomeone(someone: String): String {
-                return "Hola, $someone"
-            }
+            override fun greet(): String = "Hola, mundo"
+            override fun greetSomeone(someone: String): String = "Hola, $someone"
         }
 
-        val greetings = mutableListOf<String>()
-        greetings.add(englishGreeting.greet())
-        greetings.add(frenchGreeting.greet())
-        greetings.add(spanishGreeting.greet())
+        val greetings = mutableListOf(
+            englishGreeting.greet(),
+            frenchGreeting.greet(),
+            spanishGreeting.greet()
+        )
 
         for (name in names) {
             greetings.add(englishGreeting.greetSomeone(name))
@@ -56,6 +42,5 @@ class HelloWorldAnonymousClasses {
 fun main() {
     val helloWorld = HelloWorldAnonymousClasses()
     println(helloWorld.sayHello(listOf("Alice", "Bob")))
-
     println(helloWorld.sayHello(listOf()))
 }
