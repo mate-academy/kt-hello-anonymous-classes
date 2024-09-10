@@ -7,46 +7,38 @@ class HelloWorldAnonymousClasses {
         fun greetSomeone(someone: String): String
     }
 
+    companion object {
+        const val ENGLISH_WORLD = "Hello world"
+        const val FRENCH_WORLD = "Salut tout le monde"
+        const val SPANISH_WORLD = "Hola, mundo"
+
+        const val ENGLISH_GREET = "Hello"
+        const val FRENCH_GREET = "Salut"
+        const val SPANISH_GREET = "Hola"
+    }
+
     fun sayHello(names: List<String>): List<String> {
         val greetings = mutableListOf<String>()
-        val englishGreeting = object : HelloWorldGreeting {
-            override fun greet(): String {
-                return "Hello world"
-            }
 
-            override fun greetSomeone(someone: String): String {
-                return "Hello $someone"
+        val greetingObjects = listOf(
+            object : HelloWorldGreeting {
+                override fun greet() = ENGLISH_WORLD
+                override fun greetSomeone(someone: String) = "$ENGLISH_GREET $someone"
+            },
+            object : HelloWorldGreeting {
+                override fun greet() = FRENCH_WORLD
+                override fun greetSomeone(someone: String) = "$FRENCH_GREET $someone"
+            },
+            object : HelloWorldGreeting {
+                override fun greet() = SPANISH_WORLD
+                override fun greetSomeone(someone: String) = "$SPANISH_GREET, $someone"
             }
-        }
+        )
 
-        val frenchGreeting = object : HelloWorldGreeting {
-            override fun greet(): String {
-                return "Salut tout le monde"
-            }
-
-            override fun greetSomeone(someone: String): String {
-                return "Salut $someone"
-            }
-        }
-
-        val spanishGreeting =  object : HelloWorldGreeting {
-            override fun greet(): String {
-                return "Hola, mundo"
-            }
-
-            override fun greetSomeone(someone: String): String {
-                return "Hola, $someone"
-            }
-        }
-
-        greetings.add(englishGreeting.greet())
-        greetings.add(frenchGreeting.greet())
-        greetings.add(spanishGreeting.greet())
+        greetingObjects.forEach { greetings.add(it.greet()) }
 
         for (name in names) {
-            greetings.add(englishGreeting.greetSomeone(name))
-            greetings.add(frenchGreeting.greetSomeone(name))
-            greetings.add(spanishGreeting.greetSomeone(name))
+            greetingObjects.forEach { greetings.add(it.greetSomeone(name)) }
         }
 
         return greetings
