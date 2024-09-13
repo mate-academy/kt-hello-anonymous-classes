@@ -1,20 +1,18 @@
 package mate.academy
 
+const val ENGLISH_WORLD = "Hello world"
+const val FRENCH_WORLD = "Salut tout le monde"
+const val SPANISH_WORLD = "Hola, mundo"
+
+const val ENGLISH_GREET = "Hello"
+const val FRENCH_GREET = "Salut"
+const val SPANISH_GREET = "Hola"
+
 class HelloWorldAnonymousClasses {
 
     interface HelloWorldGreeting {
         fun greet(): String
         fun greetSomeone(someone: String): String
-    }
-
-    companion object {
-        const val ENGLISH_WORLD = "Hello world"
-        const val FRENCH_WORLD = "Salut tout le monde"
-        const val SPANISH_WORLD = "Hola, mundo"
-
-        const val ENGLISH_GREET = "Hello"
-        const val FRENCH_GREET = "Salut"
-        const val SPANISH_GREET = "Hola"
     }
 
     fun sayHello(names: List<String>): List<String> {
