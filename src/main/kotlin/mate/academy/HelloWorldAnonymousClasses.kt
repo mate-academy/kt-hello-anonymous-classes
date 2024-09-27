@@ -7,35 +7,33 @@ class HelloWorldAnonymousClasses {
         fun greetSomeone(someone: String): String
     }
 
-    object EnglishGreeting : HelloWorldGreeting {
-        override fun greet(): String = "Hello world"
-
-        override fun greetSomeone(someone: String): String = "Hello $someone"
-    }
-
-    object FrenchGreeting : HelloWorldGreeting {
-        override fun greet(): String = "Salut tout le monde"
-
-        override fun greetSomeone(someone: String): String = "Salut $someone"
-    }
-
-    object SpanishGreeting : HelloWorldGreeting {
-        override fun greet(): String = "Hola, mundo"
-
-        override fun greetSomeone(someone: String): String = "Hola, $someone"
-    }
-
     fun sayHello(names: List<String>): List<String> {
-        val rezult = mutableListOf(
-                EnglishGreeting.greet(),
-                FrenchGreeting.greet(),
-                SpanishGreeting.greet()
-        )
-        names.forEach {
-                rezult.add(EnglishGreeting.greetSomeone(it))
-                rezult.add(FrenchGreeting.greetSomeone(it))
-                rezult.add(SpanishGreeting.greetSomeone(it))
+        val englishGreeting = object : HelloWorldGreeting {
+            override fun greet(): String = greetSomeone("world")
+            override fun greetSomeone(someone: String): String = "Hello $someone"
         }
-        return rezult
+
+        val frenchGreeting = object : HelloWorldGreeting {
+            override fun greet(): String = greetSomeone("tout le monde")
+            override fun greetSomeone(someone: String): String = "Salut $someone"
+        }
+
+        val spanishGreeting = object : HelloWorldGreeting {
+            override fun greet(): String = greetSomeone("mundo")
+            override fun greetSomeone(someone: String): String = "Hola, $someone"
+        }
+
+        val greetingsList = listOf(englishGreeting, frenchGreeting, spanishGreeting)
+
+        fun getDefaultGreetings(): List<String> =
+                greetingsList.map { it.greet() }
+
+        fun getPersonalGreetingForName(name: String): List<String> =
+                greetingsList.map { it.greetSomeone(name) }
+
+        fun getPersonalGreetingForNamesList(): List<String> =
+            names.flatMap { getPersonalGreetingForName(it) }
+
+        return getDefaultGreetings() + getPersonalGreetingForNamesList()
     }
 }
