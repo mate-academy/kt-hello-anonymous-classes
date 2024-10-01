@@ -1,5 +1,17 @@
 package mate.academy
 
+private const val SPANISH_GREETING = "Hola, mundo"
+
+private const val ENGLISH_GREETING = "Hello world"
+
+private const val FRENCH_GREETING = "Salut tout le monde"
+
+private const val ENGLISH_HI = "Hello"
+
+private const val FRENCH_HI = "Salut"
+
+private const val SPANISH_HI = "Hola"
+
 class HelloWorldAnonymousClasses {
 
     interface HelloWorldGreeting {
@@ -11,43 +23,29 @@ class HelloWorldAnonymousClasses {
         val listOfGreetings: MutableList<String> = mutableListOf()
 
         val englishImplementation = object : HelloWorldGreeting {
-            override fun greet(): String {
-                return "Hello world"
-            }
+            override fun greet(): String = ENGLISH_GREETING
 
-            override fun greetSomeone(someone: String): String {
-                return "Hello $someone"
-            }
+            override fun greetSomeone(someone: String): String = String.format("%s %s", ENGLISH_HI, someone)
         }
 
         val frenchImplementation = object : HelloWorldGreeting {
-            override fun greet(): String {
-                return "Salut tout le monde"
-            }
+            override fun greet(): String = FRENCH_GREETING
 
-            override fun greetSomeone(someone: String): String {
-                return "Salut $someone"
-            }
+            override fun greetSomeone(someone: String): String = String.format("%s %s", FRENCH_HI, someone)
         }
 
         val spanishImplementation = object : HelloWorldGreeting {
-            override fun greet(): String {
-                return "Hola, mundo"
-            }
+            override fun greet(): String = SPANISH_GREETING
 
-            override fun greetSomeone(someone: String): String {
-                return "Hola, $someone"
-            }
+            override fun greetSomeone(someone: String): String = String.format("%s, %s", SPANISH_HI, someone)
         }
 
-        listOfGreetings.add(englishImplementation.greet())
-        listOfGreetings.add(frenchImplementation.greet())
-        listOfGreetings.add(spanishImplementation.greet())
+        listOfGreetings.addAll(listOf(englishImplementation.greet(),
+            frenchImplementation.greet(), spanishImplementation.greet()))
 
         for (name in names) {
-            listOfGreetings.add(englishImplementation.greetSomeone(name))
-            listOfGreetings.add(frenchImplementation.greetSomeone(name))
-            listOfGreetings.add(spanishImplementation.greetSomeone(name))
+            listOfGreetings.addAll(listOf(englishImplementation.greetSomeone(name),
+                frenchImplementation.greetSomeone(name), spanishImplementation.greetSomeone(name)))
         }
 
         return listOfGreetings
