@@ -27,19 +27,22 @@ class HelloWorldAnonymousClasses {
         val englishImplementation = object : HelloWorldGreeting {
             override fun greet(): String = ENGLISH_GREETING
 
-            override fun greetSomeone(someone: String): String = String.format(Locale.ENGLISH, "%s %s", ENGLISH_HI, someone)
+            override fun greetSomeone(someone: String): String = String.format(Locale.ENGLISH,
+                "%s %s", ENGLISH_HI, someone)
         }
 
         val frenchImplementation = object : HelloWorldGreeting {
             override fun greet(): String = FRENCH_GREETING
 
-            override fun greetSomeone(someone: String): String = String.format(Locale.ENGLISH, "%s %s", FRENCH_HI, someone)
+            override fun greetSomeone(someone: String): String = String.format(Locale.ENGLISH,
+                "%s %s", FRENCH_HI, someone)
         }
 
         val spanishImplementation = object : HelloWorldGreeting {
             override fun greet(): String = SPANISH_GREETING
 
-            override fun greetSomeone(someone: String): String = String.format(Locale.ENGLISH, "%s, %s", SPANISH_HI, someone)
+            override fun greetSomeone(someone: String): String = String.format(Locale.ENGLISH,
+                "%s, %s", SPANISH_HI, someone)
         }
 
         listOfGreetings.addAll(listOf(englishImplementation.greet(),
