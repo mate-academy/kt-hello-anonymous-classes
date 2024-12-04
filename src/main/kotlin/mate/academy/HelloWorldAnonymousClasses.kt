@@ -10,7 +10,7 @@ class HelloWorldAnonymousClasses {
     fun sayHello(names: List<String>): List<String> {
         val genericGreetings = listOf("Hello world", "Salut tout le monde", "Hola, mundo")
 
-        val EnglishGreeting: HelloWorldGreeting = object : HelloWorldGreeting {
+        val englishGreeting: HelloWorldGreeting = object : HelloWorldGreeting {
             override fun greet(): String {
                 return "Hello"
             }
@@ -20,7 +20,7 @@ class HelloWorldAnonymousClasses {
             }
         }
 
-        val FrenchGreeting: HelloWorldGreeting = object : HelloWorldGreeting {
+        val frenchGreeting: HelloWorldGreeting = object : HelloWorldGreeting {
             override fun greet(): String {
                 return "Salut"
             }
@@ -30,7 +30,7 @@ class HelloWorldAnonymousClasses {
             }
         }
 
-        val SpanishGreeting: HelloWorldGreeting = object : HelloWorldGreeting {
+        val spanishGreeting: HelloWorldGreeting = object : HelloWorldGreeting {
             override fun greet(): String {
                 return "Hola"
             }
@@ -42,9 +42,9 @@ class HelloWorldAnonymousClasses {
 
         val personalizedGreetings = names.flatMap { name ->
             listOf(
-                EnglishGreeting.greetSomeone(name),
-                FrenchGreeting.greetSomeone(name),
-                SpanishGreeting.greetSomeone(name)
+                englishGreeting.greetSomeone(name),
+                frenchGreeting.greetSomeone(name),
+                spanishGreeting.greetSomeone(name)
             )
         }
 
