@@ -7,48 +7,49 @@ class HelloWorldAnonymousClasses {
         fun greetSomeone(someone: String): String
     }
 
-    fun sayHello(names: List<String>): List<String> {
-        val result = mutableSetOf<String>()
+    fun sayHello(names: List<String>): List<String> { // Anonymous class for English
+        val englishGreeting = object : HelloWorldGreeting {
+            override fun greet(): String {
+                return "Hello world"
+            }
 
-        result.add(EnglishGreeting.greet())
-        result.add(FrenchGreeting.greet())
-        result.add(SpanishGreeting.greet())
+            override fun greetSomeone(someone: String): String {
+                return "Hello $someone"
+            }
+        }
+
+        // Anonymous class for French
+        val frenchGreeting = object : HelloWorldGreeting {
+            override fun greet(): String {
+                return "Salut tout le monde"
+            }
+
+            override fun greetSomeone(someone: String): String {
+                return "Salut $someone"
+            }
+        }
+
+        // Anonymous class for Spanish
+        val spanishGreeting = object : HelloWorldGreeting {
+            override fun greet(): String {
+                return "Hola, mundo"
+            }
+
+            override fun greetSomeone(someone: String): String {
+                return "Hola, $someone"
+            }
+        }
+
+        val result = mutableListOf<String>()
+        result.add(englishGreeting.greet())
+        result.add(frenchGreeting.greet())
+        result.add(spanishGreeting.greet())
         for (i in names.indices) {
-            result.add(EnglishGreeting.greetSomeone(names[i]))
-            result.add(FrenchGreeting.greetSomeone(names[i]))
-            result.add(SpanishGreeting.greetSomeone(names[i]))
+            result.add(englishGreeting.greetSomeone(names[i]))
+            result.add(frenchGreeting.greetSomeone(names[i]))
+            result.add(spanishGreeting.greetSomeone(names[i]))
         }
         return result.toList()
-    }
-
-    object EnglishGreeting : HelloWorldGreeting {
-        override fun greet(): String {
-            return "Hello world"
-        }
-
-        override fun greetSomeone(someone: String): String {
-            return "Hello $someone"
-        }
-    }
-
-    object FrenchGreeting : HelloWorldGreeting {
-        override fun greet(): String {
-            return "Salut tout le monde"
-        }
-
-        override fun greetSomeone(someone: String): String {
-            return "Salut $someone"
-        }
-    }
-
-    object SpanishGreeting : HelloWorldGreeting {
-        override fun greet(): String {
-            return "Hola, mundo"
-        }
-
-        override fun greetSomeone(someone: String): String {
-            return "Hola, $someone"
-        }
     }
 }
 
