@@ -32,7 +32,7 @@ class HelloWorldAnonymousClasses {
 
         val spanishGreeting = object : HelloWorldGreeting {
             override fun greet(): String {
-                return "Hola, mundo"
+                return "Hola mundo"
             }
 
             override fun greetSomeone(someone: String): String {
