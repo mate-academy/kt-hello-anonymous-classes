@@ -24,7 +24,7 @@ class HelloWorldAnonymousClasses {
         val spanishGreeting = object : HelloWorldGreeting {
 
             override fun greet(): String = "Hola, mundo"
-            override fun greetSomeone(someone: String): String = "Hola $someone"
+            override fun greetSomeone(someone: String): String = "Hola, $someone"
         }
 
         val greetings = listOf(
