@@ -8,6 +8,22 @@ class HelloWorldAnonymousClasses {
     }
 
     fun sayHello(names: List<String>): List<String> {
-        // TODO: implement
+        val greetings = listOf(
+            object : HelloWorldGreeting {
+                override fun greet(): String = "Hello world"
+                override fun greetSomeone(someone: String): String = "Hello $someone"
+            },
+            object : HelloWorldGreeting {
+                override fun greet(): String = "Salut tout le monde"
+                override fun greetSomeone(someone: String): String = "Salut $someone"
+            },
+            object : HelloWorldGreeting {
+                override fun greet(): String = "Hola, mundo"
+                override fun greetSomeone(someone: String): String = "Hola, $someone"
+            }
+        )
+
+        return greetings.map { it.greet() } +
+                names.flatMap { name -> greetings.map { it.greetSomeone(name) } }
     }
 }
