@@ -18,7 +18,7 @@ class HelloWorldAnonymousClassesTest {
         // then
         assertEquals(
             listOf(
-                "Hello world", "Salut tout le monde", "Hola, mundo",
+                "Hello world", "Salut tout le monde", "Hola mundo",
                 "Hello John", "Salut John", "Hola, John"
             ), result
         )
@@ -35,7 +35,7 @@ class HelloWorldAnonymousClassesTest {
         // then
         assertEquals(
             listOf(
-                "Hello world", "Salut tout le monde", "Hola, mundo",
+                "Hello world", "Salut tout le monde", "Hola mundo",
                 "Hello John", "Salut John", "Hola, John",
                 "Hello Jane", "Salut Jane", "Hola, Jane"
             ), result
@@ -51,7 +51,7 @@ class HelloWorldAnonymousClassesTest {
         val result = helloWorld.sayHello(names)
 
         // then
-        assertEquals(listOf("Hello world", "Salut tout le monde", "Hola, mundo"), result)
+        assertEquals(listOf("Hello world", "Salut tout le monde", "Hola mundo"), result)
     }
 
     @Test
@@ -65,7 +65,7 @@ class HelloWorldAnonymousClassesTest {
         // then
         assertEquals(
             listOf(
-                "Hello world", "Salut tout le monde", "Hola, mundo",
+                "Hello world", "Salut tout le monde", "Hola mundo",
                 "Hello José", "Salut José", "Hola, José",
                 "Hello Renée", "Salut Renée", "Hola, Renée"
             ), result
@@ -83,7 +83,7 @@ class HelloWorldAnonymousClassesTest {
         // then
         assertEquals(
             listOf(
-                "Hello world", "Salut tout le monde", "Hola, mundo",
+                "Hello world", "Salut tout le monde", "Hola mundo",
                 "Hello 123", "Salut 123", "Hola, 123",
                 "Hello $$$", "Salut $$$", "Hola, $$$"
             ), result
@@ -101,7 +101,7 @@ class HelloWorldAnonymousClassesTest {
         // then
         assertEquals(
             listOf(
-                "Hello world", "Salut tout le monde", "Hola, mundo",
+                "Hello world", "Salut tout le monde", "Hola mundo",
                 "Hello  John ", "Salut  John ", "Hola,  John ",
                 "Hello  Jane ", "Salut  Jane ", "Hola,  Jane "
             ), result
