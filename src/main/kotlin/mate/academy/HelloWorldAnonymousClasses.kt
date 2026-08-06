@@ -8,6 +8,35 @@ class HelloWorldAnonymousClasses {
     }
 
     fun sayHello(names: List<String>): List<String> {
-        // TODO: implement
+        val englishGreeting = object : HelloWorldGreeting {
+            override fun greet(): String = "Hello world"
+
+            override fun greetSomeone(someone: String): String = "Hello $someone"
+        }
+
+        val frenchGreeting = object : HelloWorldGreeting {
+            override fun greet(): String = "Salut tout le monde"
+
+            override fun greetSomeone(someone: String): String = "Salut $someone"
+        }
+
+        val spanishGreeting = object : HelloWorldGreeting {
+            override fun greet(): String = "Hola, mundo"
+
+            override fun greetSomeone(someone: String): String = "Hola, $someone"
+        }
+        val greetings: List<HelloWorldGreeting> = listOf(
+            englishGreeting, frenchGreeting, spanishGreeting
+        )
+        val res = mutableListOf<String>()
+        for (greeting in greetings) {
+            res.add(greeting.greet())
+        }
+        for (name in names) {
+            for (greeting in greetings) {
+                res.add(greeting.greetSomeone(name))
+            }
+        }
+        return res
     }
 }
